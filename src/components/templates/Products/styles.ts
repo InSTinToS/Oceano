@@ -2,8 +2,8 @@ import { NavbarContent } from 'components/wrappers/Navbar/styles'
 
 import styled from 'styled-components'
 
-const HomeStyle = styled.main`
+const ProductsStyle = styled.main`
   ${NavbarContent}
 `
 
-export { HomeStyle }
+export { ProductsStyle }

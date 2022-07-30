@@ -4,7 +4,10 @@
 
 @layer base {
   html {
-    font-family: Helvetica, system-ui, sans-serif;
+    font-family: 'Quicksand', sans-serif, Helvetica, system-ui, sans-serif;
+    font-weight: 500;
+
+    @apply text-secondary;
   }
 
   /* ===== Scrollbar CSS ===== */

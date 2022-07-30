@@ -3,9 +3,8 @@
 const pxToRem = (px = 0, base = 16) => `${px / base}rem`
 
 const colors = {
-  primary: '#FDFFFF',
-  secondary: '#EB1D27',
-  tertiary: '#072999'
+  primary: '#072999',
+  secondary: '#FCFCFC'
 }
 
 const spacing = {

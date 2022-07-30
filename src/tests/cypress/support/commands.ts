@@ -1,4 +1,5 @@
 /// <reference types="cypress" />
+
 Cypress.Commands.add('dataCy', value => {
   const finalQuery = value
     .split(' ')
