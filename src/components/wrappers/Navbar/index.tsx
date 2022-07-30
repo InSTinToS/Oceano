@@ -1,27 +1,25 @@
-/* eslint-disable @next/next/no-html-link-for-pages */
-
-/* eslint-disable @next/next/no-img-element */
 import { NavbarStyle } from './styles'
+
+import Image from 'components/atoms/Image'
+import Link from 'components/atoms/Link'
 
 import { ReactElement } from 'react'
 
-const Navbar = () => {
-  return (
-    <NavbarStyle>
-      <ul>
-        <li>
-          <a href='/'>
-            <img src='/logo.png' alt='Logo' />
-          </a>
-        </li>
+const Navbar = () => (
+  <NavbarStyle>
+    <ul>
+      <li>
+        <Link href='/'>
+          <Image alt='Logo' src='/logo.png' className='logo' />
+        </Link>
+      </li>
 
-        <li>
-          <a href='/products'>Produtos</a>
-        </li>
-      </ul>
-    </NavbarStyle>
-  )
-}
+      <li>
+        <Link href='/products'>Produtos</Link>
+      </li>
+    </ul>
+  </NavbarStyle>
+)
 
 const getNavbarLayout = (page: ReactElement) => (
   <>

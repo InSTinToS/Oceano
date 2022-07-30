@@ -5,7 +5,6 @@ interface IProduct {
   title: string
   brand: string
   rating: number
-  images: string[]
   category: string
   thumbnail: string
   description: string

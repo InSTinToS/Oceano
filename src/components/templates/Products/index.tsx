@@ -7,7 +7,7 @@ import Head from 'next/head'
 import { AiOutlineSearch } from 'react-icons/ai'
 
 const Products: TNextPageWithLayout = () => {
-  const { onSearchClick, products } = useProducts()
+  const { onSearchClick, products, onSearchChange } = useProducts()
 
   return (
     <>
@@ -21,7 +21,13 @@ const Products: TNextPageWithLayout = () => {
 
       <ProductsStyle>
         <form>
-          <input type='text' placeholder='Pesquisar' />
+          <input
+            type='text'
+            name='search'
+            aria-label='Pesquisar'
+            placeholder='Pesquisar'
+            onChange={onSearchChange}
+          />
 
           <button
             type='button'
