@@ -3,8 +3,14 @@
 const pxToRem = (px = 0, base = 16) => `${px / base}rem`
 
 const colors = {
-  primary: '#072999',
-  secondary: '#FCFCFC'
+  primary: {
+    200: '#60a5fa;',
+    500: '#072999',
+    800: '#05185A',
+    800.8: 'rgba(5, 24, 90, 0.8)'
+  },
+  secondary: '#FCFCFC',
+  tertiary: '#0A0A0A'
 }
 
 const spacing = {
@@ -47,7 +53,9 @@ module.exports = {
         '3xl': '1920px'
       },
       maxWidth: spacing,
+      maxHeight: spacing,
       minWidth: spacing,
+      minHeight: spacing,
       gridTemplateColumns: { navbar: '64px 1fr 24px' }
     }
   }

@@ -1,4 +1,4 @@
-import { IImageProps } from './types'
+import type { IImageProps } from './types'
 
 import NextImage from 'next/image'
 

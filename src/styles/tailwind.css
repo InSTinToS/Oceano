@@ -8,28 +8,27 @@
     font-weight: 500;
 
     @apply text-secondary;
+
+    @apply bg-gradient-to-r from-primary-500 to-primary-200;
   }
 
-  /* ===== Scrollbar CSS ===== */
-  /* Firefox */
   * {
     scrollbar-width: thin;
-    scrollbar-color: theme('colors.primary') #ffffff;
+    scrollbar-color: theme('colors.primary.500') theme('colors.primary.200');
   }
 
-  /* Chrome, Edge, and Safari */
   *::-webkit-scrollbar {
     width: 16px;
   }
 
   *::-webkit-scrollbar-track {
-    background: #ffffff;
+    background: theme('colors.primary.200');
   }
 
   *::-webkit-scrollbar-thumb {
-    background-color: theme('colors.primary');
+    background-color: theme('colors.primary.500');
     border-radius: 16px;
-    border: 5px solid #ffffff;
+    border: 4px solid theme('colors.primary.200');
   }
 }
 

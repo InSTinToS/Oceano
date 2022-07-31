@@ -1,12 +1,8 @@
 describe('Products', () => {
-  it('should be able to search all products', () => {
+  it('should be able to show products on start', () => {
     cy.visit('/products')
 
-    cy.dataCy('products').should('not.exist')
-
-    cy.dataCy('search').click()
-
-    cy.dataCy('products').should('exist')
+    cy.dataCy('items').should('exist')
   })
 
   it('should be able to filter using input', () => {
@@ -14,13 +10,13 @@ describe('Products', () => {
 
     cy.get('input[name="search"').type(filterText)
 
-    cy.get('[data-cy="products"] > li').each($el => {
+    cy.get('[data-cy="items"] > li').each($el => {
       expect($el.text()).contains(filterText)
     })
 
-    cy.get('[data-cy="products"] > li').should('not.contain', 'Infinix INBOOK')
+    cy.get('[data-cy="items"] > li').should('not.contain', 'Infinix INBOOK')
     cy.get('input[name="search"').clear()
-    cy.get('[data-cy="products"] > li').should('contain', 'Infinix INBOOK')
+    cy.get('[data-cy="items"] > li').should('contain', 'Infinix INBOOK')
   })
 })
 

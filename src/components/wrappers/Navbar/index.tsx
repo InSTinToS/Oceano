@@ -1,25 +1,33 @@
+import { useNavbar } from './logic'
 import { NavbarStyle } from './styles'
 
 import Image from 'components/atoms/Image'
 import Link from 'components/atoms/Link'
 
+import { motion } from 'framer-motion'
 import { ReactElement } from 'react'
 
-const Navbar = () => (
-  <NavbarStyle>
-    <ul>
-      <li>
-        <Link href='/'>
-          <Image alt='Logo' src='/logo.png' className='logo' />
-        </Link>
-      </li>
+const Navbar = () => {
+  const { opacity, onLogoClick } = useNavbar()
 
-      <li>
-        <Link href='/products'>Produtos</Link>
-      </li>
-    </ul>
-  </NavbarStyle>
-)
+  return (
+    <NavbarStyle>
+      <motion.div id='bg' style={{ opacity }} />
+
+      <ul>
+        <li>
+          <button onClick={onLogoClick}>
+            <Image alt='Logo' src='/logo.png' className='logo' />
+          </button>
+        </li>
+
+        <li>
+          <Link href='/products'>Produtos</Link>
+        </li>
+      </ul>
+    </NavbarStyle>
+  )
+}
 
 const getNavbarLayout = (page: ReactElement) => (
   <>

@@ -1,18 +1,18 @@
-import { IUserStore } from '../../types'
+import { IProduct } from '../../types'
 
 import { TExtraReducers } from 'typescript/redux.types'
 
 import { createAsyncThunk } from '@reduxjs/toolkit'
 
 const register = async (data: any) => {
-  const user = data
+  const products = data
 
-  return { loading: false, user }
+  return { loading: false, products }
 }
 
-const registerThunk = createAsyncThunk('userStore/register', register)
+const registerThunk = createAsyncThunk('products-store/register', register)
 
-const registerExtraReducers: TExtraReducers<IUserStore> = ({ addCase }) => {
+const registerExtraReducers: TExtraReducers<IProduct> = ({ addCase }) => {
   addCase(registerThunk.pending, state => ({ ...state, loading: true }))
 
   addCase(registerThunk.fulfilled, (state, { payload }) => ({

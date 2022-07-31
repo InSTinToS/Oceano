@@ -1,34 +1,48 @@
-import type { TOnSearchChange } from './types'
+import type { TOnSearchChange, TProductsToItems } from './types'
+
+import { IItem } from 'components/molecules/Card/types'
 
 import fakeProducts from 'tests/jest/mocks/products'
 
-import { IProduct } from 'typescript/api/products'
-
 import filter from 'utils/filter'
 
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
+
+const productsToItems: TProductsToItems = products =>
+  products.map(({ description, id, title, price, thumbnail }) => ({
+    title,
+    price,
+    description,
+    id: String(id),
+    image: thumbnail
+  }))
 
 const useProducts = () => {
-  const [products, setProducts] = useState<IProduct[]>()
-  const lastQuery = useRef<IProduct[]>()
+  const lastQuery = useRef<IItem[]>()
+  const [products, setProducts] = useState<IItem[]>()
 
-  const onSearchClick = async () => {
+  const getAllProducts = async () => {
     // const response: AxiosResponse<IProductsResponse> = await api.get(
     //   '/products'
     // )
 
-    // const data = response.data.products
-
-    // setProducts(data)
-    // lastQuery.current = data
+    // const items = productsToItems(response.data.products)
+    // setProducts(items)
+    // lastQuery.current = items
 
     //? Fake below
 
+    const items = productsToItems(fakeProducts.products)
+
     setTimeout(() => {
-      setProducts(fakeProducts.products)
+      setProducts(items)
     }, 500)
 
-    lastQuery.current = fakeProducts.products
+    lastQuery.current = items
+  }
+
+  const onSearchSubmit = async () => {
+    await getAllProducts()
   }
 
   const onSearchChange: TOnSearchChange = ({ target: { value } }) => {
@@ -39,7 +53,11 @@ const useProducts = () => {
     )
   }
 
-  return { onSearchClick, products, onSearchChange }
+  useEffect(() => {
+    getAllProducts()
+  }, [])
+
+  return { onSearchSubmit, products, onSearchChange }
 }
 
 export { useProducts }

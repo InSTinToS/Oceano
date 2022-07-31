@@ -5,6 +5,7 @@ interface IProduct {
   title: string
   brand: string
   rating: number
+  images: string[]
   category: string
   thumbnail: string
   description: string
@@ -18,4 +19,9 @@ interface IProductsResponse {
   products: IProduct[]
 }
 
-export type { IProduct, IProductsResponse }
+interface IProductsStore {
+  loading?: boolean
+  products?: Partial<IProduct[]>
+}
+
+export type { IProductsStore, IProduct, IProductsResponse }

@@ -1,13 +1,16 @@
 import styled, { css } from 'styled-components'
 import tw from 'twin.macro'
 
-const NavbarContent = css`
-  ${tw`pt-26 w-full min-w-80 bg-gradient-to-b from-primary to-blue-400 
-    min-h-screen`}
+const NavbarPadding = css`
+  ${tw`pt-26`}
 `
 
 const NavbarStyle = styled.nav`
   ${tw`fixed z-10 min-w-80 w-full h-26 px-8 bg-transparent`}
+
+  #bg {
+    ${tw`absolute left-0 right-0 top-0 bottom-0 bg-gradient-to-r from-primary-500 to-blue-400`}
+  }
 
   &,
   ul {
@@ -15,9 +18,9 @@ const NavbarStyle = styled.nav`
   }
 
   ul {
-    ${tw`space-x-8 max-w-screen-3xl mx-auto w-full`}
+    ${tw`relative z-20 space-x-8 max-w-screen-3xl mx-auto w-full`}
 
-    li a {
+    li a, li button {
       ${tw`h-8 flex items-center text-xl`}
 
       .logo {
@@ -35,4 +38,4 @@ const NavbarStyle = styled.nav`
   }
 `
 
-export { NavbarStyle, NavbarContent }
+export { NavbarStyle, NavbarPadding }
