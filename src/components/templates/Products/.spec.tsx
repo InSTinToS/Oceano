@@ -35,19 +35,25 @@ describe('Products', () => {
       </GlobalProvider>
     )
 
-    let list = await screen.findByRole('list', { name: 'Produtos' })
-
-    expect(list).toBeInTheDocument()
+    expect(
+      await screen.findByRole('list', { name: 'Produtos' })
+    ).toBeInTheDocument()
 
     const input = screen.getByRole('textbox', { name: 'Pesquisar' })
 
-    await act(async () => await userEvent.type(input, wordSearched))
+    await userEvent.type(input, wordSearched)
 
     expect(input).toHaveValue(wordSearched)
 
-    list = await screen.findByRole('list', { name: 'Produtos' })
-    expect(list).toHaveTextContent(wordSearched)
-    await waitFor(async () => expect(list).not.toHaveTextContent(differWord))
+    expect(
+      await screen.findByRole('list', { name: 'Produtos' })
+    ).toHaveTextContent(wordSearched)
+
+    await waitFor(async () =>
+      expect(
+        await screen.findByRole('list', { name: 'Produtos' })
+      ).not.toHaveTextContent(differWord)
+    )
   })
 })
 
@@ -91,5 +97,4 @@ describe('useProducts', () => {
     })
   })
 })
-
 export {}

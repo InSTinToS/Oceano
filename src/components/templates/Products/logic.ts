@@ -42,12 +42,13 @@ const useProducts = () => {
   useEffect(() => {
     const controller = new AbortController()
 
-    dispatch(readProducts({ signal: controller.signal }))
+    if (!productsStore.products || productsStore.products.length < 2)
+      dispatch(readProducts({ signal: controller.signal }))
 
     return () => {
       controller.abort()
     }
-  }, [dispatch])
+  }, [dispatch, productsStore.products])
 
   useEffect(() => {
     if (productsStore.products) {

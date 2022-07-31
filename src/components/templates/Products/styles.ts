@@ -5,11 +5,13 @@ import tw from 'twin.macro'
 
 const Header = styled.header`
   ${NavbarPadding}
-  ${tw`px-4`}
+  ${tw`px-4 max-w-screen-3xl mx-auto`}
 `
 
 const Main = tw.main`
   pb-26
+  mx-auto
+  max-w-screen-3xl 
 `
 
 const Footer = styled.footer`

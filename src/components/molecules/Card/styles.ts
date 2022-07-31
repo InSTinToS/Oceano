@@ -6,13 +6,6 @@ const Title = tw.span`
   text-xl
 `
 
-const Price = tw.span`
-  text-xl
-  ml-auto
-  text-green-500
-  font-extrabold
-`
-
 const Description = tw.span`
   mt-2
   text-sm
@@ -23,7 +16,7 @@ const Description = tw.span`
 const Header = styled.header`
   ${tw`h-96 w-full col-span-2 row-span-4`}
 
-  img {
+  a img {
     ${tw`h-full w-full object-cover select-none`}
   }
 `
@@ -33,14 +26,14 @@ const Footer = styled.footer`
     grid 
     py-4 
     px-4
-    h-1/3
+    min-h-4
     w-full 
     absolute
     bottom-0
     grid-cols-2
     bg-primary-800.8 
 
-    sm:hidden
+    lg:hidden
   `}
 `
 
@@ -61,4 +54,4 @@ const CardStyle = styled(motion.article)`
   }
 `
 
-export { CardStyle, Title, Price, Description, Header, Footer }
+export { CardStyle, Title, Description, Header, Footer }

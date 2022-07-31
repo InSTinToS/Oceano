@@ -1,4 +1,4 @@
-import Products from '../components/templates/Products'
+import Products from '../../components/templates/Products'
 
 import { getNavbarLayout } from 'components/wrappers/Navbar'
 

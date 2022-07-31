@@ -6,7 +6,7 @@ const NavbarPadding = css`
 `
 
 const NavbarStyle = styled.nav`
-  ${tw`fixed z-10 min-w-80 w-full h-26 px-8 bg-transparent`}
+  ${tw`fixed z-10 min-w-80 w-full h-26 px-4 bg-transparent`}
 
   #bg {
     ${tw`absolute left-0 right-0 top-0 bottom-0 bg-gradient-to-r from-primary-500 to-blue-400`}
@@ -14,7 +14,7 @@ const NavbarStyle = styled.nav`
 
   &,
   ul {
-    ${tw`flex flex-row items-center`}
+    ${tw`flex flex-row items-center justify-between`}
   }
 
   ul {
@@ -34,6 +34,12 @@ const NavbarStyle = styled.nav`
       .logo {
         ${tw`h-10 w-40`}
       }
+    }
+  }
+
+  @media screen and (min-width: 1920px) {
+    ul {
+      ${tw`px-4`}
     }
   }
 `

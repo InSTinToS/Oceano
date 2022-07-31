@@ -1,4 +1,6 @@
-import { IProductsResponse, IProductsStore } from '../../types'
+import { TRead } from './types'
+
+import { IProduct, IProductsResponse, IProductsStore } from '../../types'
 
 import { TExtraReducers } from 'typescript/redux.types'
 
@@ -6,16 +8,27 @@ import { createAsyncThunk } from '@reduxjs/toolkit'
 import api from 'api'
 import { AxiosResponse } from 'axios'
 
-const read = async ({ signal }: { signal?: AbortSignal }) => {
-  const response: AxiosResponse<IProductsResponse> = await api.get(
-    '/products',
-    {
-      signal,
-      params: { limit: 10 }
-    }
-  )
+const read: TRead = async ({ signal, params }, { getState }) => {
+  let products = getState().productsStore.products
 
-  return { loading: false, products: response.data.products }
+  if (!params?.id) {
+    const response: AxiosResponse<IProductsResponse> = await api.get(
+      `/products`,
+      { params: { limit: 10 } }
+    )
+
+    products = response.data.products
+  } else {
+    const response: AxiosResponse<IProduct> = await api.get(
+      `/products/${params.id}`,
+      { signal }
+    )
+
+    if (products) products.push(response.data)
+    else products = [response.data]
+  }
+
+  return { loading: false, products }
 }
 
 const readThunk = createAsyncThunk('products-store/read', read)
