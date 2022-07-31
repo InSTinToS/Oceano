@@ -1,9 +1,14 @@
-import { IProduct } from '../types'
+import { IProductsStore } from '../types'
 
 import { TReducer } from 'typescript/redux.types'
 
-const update: TReducer<IProduct, IProduct> = (state, { payload }) => {
-  state = { ...state, ...payload }
+const update: TReducer<IProductsStore, IProductsStore['products']> = (
+  state,
+  { payload }
+) => {
+  const prev = state.products
+
+  if (prev && payload) state.products = [...prev, ...payload]
 }
 
 export { update }

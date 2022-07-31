@@ -28,9 +28,9 @@ const Products: TNextPageWithLayout = () => {
         />
       </Header>
 
-      <main>
+      <Main>
         <Items items={products} ariaLabel='Produtos' />
-      </main>
+      </Main>
 
       <Footer>
         <ul className=''>

@@ -21,7 +21,7 @@ interface IProductsResponse {
 
 interface IProductsStore {
   loading?: boolean
-  products?: Partial<IProduct[]>
+  products?: IProduct[]
 }
 
 export type { IProductsStore, IProduct, IProductsResponse }

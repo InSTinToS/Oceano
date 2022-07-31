@@ -7,8 +7,6 @@ const useNavbar = () => {
 
   useEffect(() => {
     window.addEventListener('scroll', () => {
-      console.log(window.scrollY)
-
       y.set(window.scrollY)
     })
   }, [y])

@@ -1,5 +1,6 @@
 import { useProducts } from './logic'
 
+import GlobalProvider from '../../wrappers/GlobalProvider'
 import Products from '../Products'
 
 import '@testing-library/jest-dom'
@@ -15,7 +16,11 @@ import React from 'react'
 
 describe('Products', () => {
   it('should be able to show products on start', async () => {
-    render(<Products />)
+    render(
+      <GlobalProvider>
+        <Products />
+      </GlobalProvider>
+    )
 
     expect(await screen.findByRole('list')).toBeInTheDocument()
   })
@@ -24,14 +29,20 @@ describe('Products', () => {
     const differWord = 'iPhone 9'
     const wordSearched = 'Samsung Universe 9'
 
-    render(<Products />)
+    render(
+      <GlobalProvider>
+        <Products />
+      </GlobalProvider>
+    )
 
     let list = await screen.findByRole('list', { name: 'Produtos' })
 
     expect(list).toBeInTheDocument()
 
     const input = screen.getByRole('textbox', { name: 'Pesquisar' })
+
     await act(async () => await userEvent.type(input, wordSearched))
+
     expect(input).toHaveValue(wordSearched)
 
     list = await screen.findByRole('list', { name: 'Produtos' })
@@ -42,7 +53,7 @@ describe('Products', () => {
 
 describe('useProducts', () => {
   it('should be able to search all products', async () => {
-    const { result } = renderHook(useProducts)
+    const { result } = renderHook(useProducts, { wrapper: GlobalProvider })
 
     await act(async () => {
       await result.current.onSearchSubmit()
@@ -50,11 +61,12 @@ describe('useProducts', () => {
 
     await waitFor(() => expect(result.current.products).toBeTruthy())
   })
+
   it('should be able to filter using input', async () => {
     const differWord = 'iPhone 9'
     const wordSearched = 'MacBook Pro'
 
-    const { result } = renderHook(useProducts)
+    const { result } = renderHook(useProducts, { wrapper: GlobalProvider })
 
     await act(async () => await result.current.onSearchSubmit())
 

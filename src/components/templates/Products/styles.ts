@@ -5,7 +5,11 @@ import tw from 'twin.macro'
 
 const Header = styled.header`
   ${NavbarPadding}
-  ${tw`px-4 mb-4`}
+  ${tw`px-4`}
+`
+
+const Main = tw.main`
+  pb-26
 `
 
 const Footer = styled.footer`
@@ -20,4 +24,4 @@ const Footer = styled.footer`
   }
 `
 
-export { Header, Footer }
+export { Header, Footer, Main }

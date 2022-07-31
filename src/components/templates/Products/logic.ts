@@ -2,11 +2,14 @@ import type { TOnSearchChange, TProductsToItems } from './types'
 
 import { IItem } from 'components/molecules/Card/types'
 
-import fakeProducts from 'tests/jest/mocks/products'
+import useAppDispatch from 'hooks/useAppDispatch'
+import useAppSelector from 'hooks/useAppSelector'
+
+import { readThunk as readProducts } from 'store/products/extraReducers/read'
 
 import filter from 'utils/filter'
 
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 
 const productsToItems: TProductsToItems = products =>
   products.map(({ description, id, title, price, thumbnail }) => ({
@@ -18,32 +21,11 @@ const productsToItems: TProductsToItems = products =>
   }))
 
 const useProducts = () => {
+  const dispatch = useAppDispatch()
   const lastQuery = useRef<IItem[]>()
   const [products, setProducts] = useState<IItem[]>()
 
-  const getAllProducts = async () => {
-    // const response: AxiosResponse<IProductsResponse> = await api.get(
-    //   '/products'
-    // )
-
-    // const items = productsToItems(response.data.products)
-    // setProducts(items)
-    // lastQuery.current = items
-
-    //? Fake below
-
-    const items = productsToItems(fakeProducts.products)
-
-    setTimeout(() => {
-      setProducts(items)
-    }, 500)
-
-    lastQuery.current = items
-  }
-
-  const onSearchSubmit = async () => {
-    await getAllProducts()
-  }
+  const productsStore = useAppSelector(({ productsStore }) => productsStore)
 
   const onSearchChange: TOnSearchChange = ({ target: { value } }) => {
     setProducts(prev =>
@@ -53,9 +35,28 @@ const useProducts = () => {
     )
   }
 
+  const onSearchSubmit = useCallback(async () => {
+    await dispatch(readProducts({}))
+  }, [dispatch])
+
   useEffect(() => {
-    getAllProducts()
-  }, [])
+    const controller = new AbortController()
+
+    dispatch(readProducts({ signal: controller.signal }))
+
+    return () => {
+      controller.abort()
+    }
+  }, [dispatch])
+
+  useEffect(() => {
+    if (productsStore.products) {
+      const items = productsToItems(productsStore.products)
+
+      setProducts(items)
+      lastQuery.current = items
+    }
+  }, [productsStore.products])
 
   return { onSearchSubmit, products, onSearchChange }
 }

@@ -4,6 +4,7 @@ import tw from 'twin.macro'
 const ItemsGrid = tw(motion.ul)`
   grid 
   px-4 
+  py-4
   gap-4 
   w-full 
   gap-y-4 
