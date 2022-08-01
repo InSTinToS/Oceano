@@ -1,7 +1,8 @@
-import { IItem } from 'components/molecules/List/ListItem/types'
+import type { IItem } from 'components/molecules/Card/types'
 
-import { IProduct } from 'api/products.types'
-import { InputHTMLAttributes } from 'react'
+import type { IProduct } from 'store/products/types'
+
+import type { InputHTMLAttributes } from 'react'
 
 type TProductsToItems = (products: IProduct[]) => IItem[]
 

@@ -28,6 +28,41 @@ describe('Products', () => {
 
     cy.url().should('not.contain', 'products/')
   })
+
+  it('should be able update products', () => {
+    const updateValues = {
+      price: '1',
+      title: 'TITLE',
+      discountPercentage: '1',
+      description: 'DESCRIPTION'
+    }
+
+    cy.get('[data-cy="items"] > li:nth-child(1)').click()
+
+    cy.url().should('contain', 'products/1')
+
+    cy.get('header > button').click({ multiple: true })
+
+    cy.get('[name="title"]').type(updateValues.title)
+    cy.get('[name="price"]').type(updateValues.price)
+    cy.get('[name="discountPercentage"]').type(updateValues.discountPercentage)
+    cy.get('[name="description"]').type(updateValues.description)
+
+    cy.get('button[type="submit"]').click()
+
+    Object.values(updateValues).forEach(value =>
+      cy.get('header').should('contain.text', value)
+    )
+
+    cy.get('nav img').click()
+
+    cy.url().should('not.contain', 'products/')
+
+    cy.get('input[name="search"').clear().type('TITLE')
+    cy.get('[data-cy="items"] > li:nth-child(1)').click()
+
+    cy.url().should('contain', 'products/1')
+  })
 })
 
 export {}

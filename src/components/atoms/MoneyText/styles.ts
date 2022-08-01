@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import tw from 'twin.macro'
 
 const MoneyTextStyle = styled.span<IMoneyStyleProps>`
-  ${tw`text-xl ml-auto font-extrabold`}
+  ${tw`text-xl font-extrabold`}
 
   ${({ negative }) => (negative ? tw`text-red-500` : tw`text-green-500`)};
 `

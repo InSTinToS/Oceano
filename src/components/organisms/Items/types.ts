@@ -1,4 +1,4 @@
-import { IItem } from '../../molecules/Card/types'
+import type { IItem } from '../../molecules/Card/types'
 
 interface IListProps {
   ariaLabel?: string

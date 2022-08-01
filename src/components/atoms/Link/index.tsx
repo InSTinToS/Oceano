@@ -1,4 +1,4 @@
-import { ILinkProps } from './types'
+import type { ILinkProps } from './types'
 
 import NextLink from 'next/link'
 

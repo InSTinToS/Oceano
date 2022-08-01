@@ -2,12 +2,21 @@
 import { useProduct } from './logic'
 import { ProductStyle } from './styles'
 
+import Button from 'components/atoms/Button'
 import MoneyText from 'components/atoms/MoneyText'
 
 import type { TNextPageWithLayout } from 'typescript/next.types'
 
 const Product: TNextPageWithLayout = () => {
-  const { product } = useProduct()
+  const {
+    product,
+    register,
+    shownInputs,
+    toggleInputs,
+    handleSubmit,
+    onUpdateSubmit,
+    resetShownInputs
+  } = useProduct()
 
   return product ? (
     <ProductStyle>
@@ -15,20 +24,56 @@ const Product: TNextPageWithLayout = () => {
         <img src={product.images[0]} alt='' />
       </aside>
 
-      <article>
-        <header>
-          <h1>
-            {product.title} - {product.brand}
-          </h1>
-          <MoneyText value={product.price} prefix />
-          <MoneyText value={product.discountPercentage} percentage negative />
-          <p>{product.description}</p>
-        </header>
+      <form onSubmit={handleSubmit(onUpdateSubmit)}>
+        <article>
+          <header>
+            {shownInputs.title ? (
+              <input {...register('title')} placeholder='Título' />
+            ) : (
+              <button onClick={() => toggleInputs('title')}>
+                <h1>{product.title}</h1>
+              </button>
+            )}
 
-        <footer>
-          <button>Alterar</button>
-        </footer>
-      </article>
+            {shownInputs.price ? (
+              <input {...register('price')} placeholder='Preço' />
+            ) : (
+              <button onClick={() => toggleInputs('price')}>
+                <MoneyText value={product.price} prefix />
+              </button>
+            )}
+
+            {shownInputs.discountPercentage ? (
+              <input
+                {...register('discountPercentage')}
+                placeholder='Porcentagem de desconto'
+              />
+            ) : (
+              <button onClick={() => toggleInputs('discountPercentage')}>
+                <MoneyText
+                  negative
+                  percentage
+                  value={product.discountPercentage}
+                />
+              </button>
+            )}
+
+            {shownInputs.description ? (
+              <textarea {...register('description')} placeholder='Descrição' />
+            ) : (
+              <button onClick={() => toggleInputs('description')}>
+                <p>{product.description}</p>
+              </button>
+            )}
+          </header>
+
+          <footer>
+            <Button type='submit' onClick={resetShownInputs}>
+              Alterar
+            </Button>
+          </footer>
+        </article>
+      </form>
     </ProductStyle>
   ) : (
     <></>

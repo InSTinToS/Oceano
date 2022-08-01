@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { CardStyle, Description, Footer, Header, Title } from './styles'
-import { ICardProps } from './types'
+import type { ICardProps } from './types'
 
 import Link from 'components/atoms/Link'
 import MoneyText from 'components/atoms/MoneyText'

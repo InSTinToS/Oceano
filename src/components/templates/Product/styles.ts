@@ -5,10 +5,10 @@ import tw from 'twin.macro'
 
 const ProductStyle = styled.div`
   ${NavbarPadding}
-  ${tw`flex flex-col space-y-4 h-screen max-w-screen-3xl mx-auto`}
+  ${tw`flex flex-col space-y-4 h-screen max-w-screen-3xl mx-auto pb-4 px-4`}
 
   aside {
-    ${tw`mx-4 flex-1 border shadow-2xl overflow-hidden rounded-xl`}
+    ${tw`flex-1 border shadow-2xl overflow-hidden rounded-xl`}
 
     img {
       ${tw`h-full w-full object-cover select-none`}
@@ -16,45 +16,44 @@ const ProductStyle = styled.div`
   }
 
   article {
-    ${tw`p-4`}
+    header {
+      ${tw`flex flex-col space-y-4`}
 
-    h1 {
-      ${tw`text-2xl`}
-    }
+      input,
+      textarea {
+        ${tw`text-secondary bg-transparent border border-secondary
+         w-full p-2`}
 
-    p {
-      ${tw`py-2`}
-    }
-
-    span + span {
-      ${tw`ml-2`}
-    }
-
-    button {
-      ${tw`shadow-2xl py-2 text-xl rounded-xl w-full bg-secondary 
-        text-primary-200 mt-4`}
-    }
-  }
-
-  @media screen and (min-width: 1024px) {
-    ${tw`flex-row justify-evenly pb-8 space-y-0 `}
-
-    aside {
-      flex-grow: 2;
-      ${tw`h-full`};
-    }
-
-    article {
-      ${tw`h-full flex flex-col justify-between flex-1`}
+        &::placeholder {
+          ${tw`text-secondary`}
+        }
+      }
 
       button {
-        ${tw`m-0`}
+        ${tw`flex w-full justify-center`}
+
+        h1 {
+          ${tw`text-2xl`}
+        }
+
+        p {
+        }
       }
     }
   }
 
-  @media screen and (min-width: 1440px) {
-    article {
+  @media screen and (min-width: 768px) {
+    ${tw`flex-row items-stretch space-x-8 space-y-0`}
+
+    aside {
+      ${tw`flex-grow[2]`}
+    }
+
+    form {
+      &,
+      article {
+        ${tw`flex flex-col h-full w-full flex-1 justify-between `}
+      }
     }
   }
 `

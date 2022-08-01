@@ -2,6 +2,7 @@ import { IProductsStore } from './types'
 
 import { readExtraReducers } from './extraReducers/read'
 import { update } from './reducers/update'
+import { updateSingle } from './reducers/updateSingle'
 
 import type { TExtraReducers } from 'typescript/redux.types'
 
@@ -16,8 +17,10 @@ const extraReducers: TExtraReducers<IProductsStore> = builder => {
 const productsStore = createSlice({
   initialState,
   extraReducers,
-  reducers: { update },
-  name: 'products-store'
+  name: 'products-store',
+  reducers: { update, updateSingle: updateSingle }
 })
 
-export { productsStore }
+const productsActions = productsStore.actions
+
+export { productsStore, productsActions }

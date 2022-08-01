@@ -1,6 +1,6 @@
 import type { TOnSearchChange, TProductsToItems } from './types'
 
-import { IItem } from 'components/molecules/Card/types'
+import type { IItem } from 'components/molecules/Card/types'
 
 import useAppDispatch from 'hooks/useAppDispatch'
 import useAppSelector from 'hooks/useAppSelector'

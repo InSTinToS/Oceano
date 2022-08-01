@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { Input, SearchStyle } from './styles'
-import { ISearchProps } from './types'
+import type { ISearchProps } from './types'
 
 const Search = ({ onSearchChange, onSearchSubmit }: ISearchProps) => (
   <SearchStyle>
