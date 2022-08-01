@@ -14,7 +14,7 @@ const read: TRead = async ({ signal, params }, { getState }) => {
   if (!params?.id) {
     const response: AxiosResponse<IProductsResponse> = await api.get(
       `/products`,
-      { params: { limit: 10 } }
+      { params: { limit: 20 } }
     )
 
     products = response.data.products
